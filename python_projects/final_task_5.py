@@ -56,7 +56,7 @@ total_revenue = total_revenue(purchases)
 items_by_category = dict(items_by_category(purchases))
 min_price = 1.0
 expensive_purchases = expensive_purchases(purchases, min_price)
-average_price_by_category = average_price_by_category(purchases)
+average_price_by_category = dict(average_price_by_category(purchases))
 most_frequent_category = most_frequent_category(purchases)
 
 
