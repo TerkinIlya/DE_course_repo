@@ -1,4 +1,4 @@
-python_projects/.env
+/python_projects/.env
 
 __pycache__/
 *.py[cod]
@@ -8,7 +8,7 @@ __pycache__/
 venv/
 env/
 .venv/
-python_projects/py_venv/
+/python_projects/py_venv/
 py_venv/
 
 *.log
