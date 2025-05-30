@@ -1,0 +1,52 @@
+services:
+  postgres:
+    image: postgres:15
+    restart: always
+    container_name: postgres
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: 1
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    networks:
+      - kafka_clickhouse_net
+
+  clickhouse:
+    image: yandex/clickhouse-server:latest
+    restart: always
+    container_name: clickhouse
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    volumes:
+      - ./clickhouse_data:/var/lib/clickhouse
+    networks:
+      - kafka_clickhouse_net
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000" # Порт для веб-интерфейса Grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin # Логин администратора Grafana
+      - GF_SECURITY_ADMIN_PASSWORD=admin # Пароль администратора Grafana
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - clickhouse
+    networks:
+      - kafka_clickhouse_net
+
+
+volumes:
+  postgres_data:
+  clickhouse_data:
+  grafana_data:
+networks:
+  kafka_clickhouse_net:
+    external: true
