@@ -25,3 +25,5 @@ build/
 .coverage
 htmlcov/
 .tox/
+
+/python_projects/PySpark/data/final*
