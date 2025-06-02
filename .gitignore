@@ -27,3 +27,4 @@ htmlcov/
 .tox/
 
 /python_projects/PySpark/data/final*
+/python_projects/PySpark/data/customs_data.csv
